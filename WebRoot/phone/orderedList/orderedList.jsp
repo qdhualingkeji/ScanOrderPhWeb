@@ -36,12 +36,16 @@ function getOrderDetailsByOrderNumber(){
 		    	for(var i=0;i<productList.length;i++){
 		    		if(i==0){
 		    			productListDiv.append("<div class=\"categoryName_div\">"
+		    					+"<span class=\"categoryName_span\">"
 		    			        +productList[i].categoryName
+		    			        +"</span>"
 		    			        +"</div>");
 		    		}
 		    		else if(productList[i].categoryId!=productList[i-1].categoryId){
 		    			productListDiv.append("<div class=\"categoryName_div\">"
+		    					+"<span class=\"categoryName_span\">"
 		    			        +productList[i].categoryName
+		    			        +"</span>"
 		    			        +"</div>");
 		    		}
 		    		productListDiv.append("<div class=\"item_div\" id=\"item"+productList[i].id+"\">"
@@ -144,7 +148,7 @@ function confirm(){
       alert("食品数量不符合要求");
     }
     else{
-    	location.href='<%=path%>'+"/phone/comfirmOrder/comfirmOrder?type="+type;
+    	location.href='<%=path%>'+"/phone/comfirmOrder/comfirmOrder.jsp?type="+type;
     }
 }
 </script>
