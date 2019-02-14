@@ -1,0 +1,283 @@
+@CHARSET "UTF-8";
+.main_div{
+  width:100%;
+}
+.ddxq_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  color:#fff;
+  text-align:center;
+  border-bottom:#898989 solid 1px;
+  background-color:#cd2222;
+}
+.state_div{
+  width:100%;
+  height:150px;
+  background-color:#cd2222;
+}
+.space1_div{
+  height:20px;
+}
+.state_middle_div{
+  width:250px;
+  height:80px;
+  margin:0 auto;
+}
+.paid_img{
+  width:50px;
+  height:50px;
+}
+.paid_div{
+  width:50px;
+  height:25px;
+  line-height:20px;
+  color:#fff;
+  font-size:15px;
+  text-align:center;
+}
+.line1_div{
+  width:50px;
+  height:4px;
+  margin-left:50px;
+  margin-top:-55px;
+  background-color:#ccc;
+}
+.cook_img{
+  width:50px;
+  height:50px;
+  margin-left:100px;
+  margin-top:-29px;
+}
+.cook_div{
+  width:50px;
+  height:25px;
+  line-height:20px;
+  margin-left:100px;
+  color:#fff;
+  font-size:15px;
+  text-align:center;
+}
+.line2_div{
+  width:50px;
+  height:4px;
+  margin-left:150px;
+  margin-top:-54px;
+  background-color:#ccc;
+}
+.finished_img{
+  width:50px;
+  height:50px;
+  margin-left:200px;
+  margin-top:-29px;
+}
+.finished_div{
+  width:50px;
+  height:25px;
+  line-height:20px;
+  margin-left:200px;
+  color:#fff;
+  font-size:15px;
+  text-align:center;
+}
+.tishi_div{
+  width:300px;
+  height:50px;
+  line-height:50px;
+  margin:0 auto;
+  color:#fff;
+  font-size:15px;
+  text-align:center;
+}
+.order_div{
+  width:100%;
+  height:120px;
+  margin-top:20px;
+  background-color:#999;
+}
+.orderNumber_div{
+  width:100%;
+  height:30px;
+  margin-top:10px;
+  margin-left:20px;
+  position:absolute;
+}
+.orderTime_div{
+  width:100%;
+  height:30px;
+  margin-top:40px;
+  margin-left:20px;
+  color:#555;
+  position:absolute;
+}
+.stateTip_div{
+  width:100%;
+  height:30px;
+  margin-top:70px;
+  margin-left:20px;
+  color:#cd2222;
+  position:absolute;
+}
+.ydsp_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  margin-top:20px;
+  padding-left:20px;
+  border-bottom:#ccc solid 1px;
+}
+.productList_div .item_div{
+  width:100%;
+  height:40px;
+  line-height:40px;
+  border-bottom:#ccc solid 1px;
+}
+.productName_div{
+  margin-left:20px;
+}
+.price_div{
+  width:120px;
+  margin-top:-40px;
+  float:right;
+  text-align:right;
+  margin-right:10px;
+}
+.quantity_div{
+  width:100px;
+  margin-top:-40px;
+  float:right;
+  text-align:right;
+  margin-right:130px;
+}
+.tjdd_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  border-bottom:#ccc solid 1px;
+}
+.committedTime_div{
+  margin-left:20px;
+  color:#999;
+}
+.totalMount_div{
+  color:#999;
+  margin-top:-50px;
+  float:right;
+  margin-right:10px;
+}
+.totalConsume_div{
+  color:#cd2222;
+  float:right;
+}
+.tdcd_div{
+  width:100%;
+  height:55px;
+  line-height:55px;
+}
+.cd_div{
+  width:55px;
+  height:55px;
+  line-height:50px;
+  float:right;
+  margin-right:30px;
+}
+.cd_img{
+  width:23px;
+  height:23px;
+  margin-top:5px;
+  margin-left:10px;
+  position:absolute;
+}
+.cd_text_div{
+  width:55px;
+  margin-top:15px;
+  text-align:center;
+  position:absolute;
+}
+.td_div{
+  width:55px;
+  height:55px;
+  line-height:50px;
+  float:right;
+  margin-right:5px;
+}
+.td_img{
+  width:23px;
+  height:23px;
+  margin-top:5px;
+  margin-left:10px;
+  position:absolute;
+}
+.td_text_div{
+  width:55px;
+  margin-top:15px;
+  text-align:center;
+  position:absolute;
+}
+.space2_div{
+  width:100%;
+  height:55px;
+}
+.bottom_div{
+  width:100%;
+  height:55px;
+  line-height:55px;
+  bottom:0px;
+  background-color:#fff;
+  position:fixed;
+}
+.bottom_div .but_div{
+  width:255px;
+  height:55px;
+  margin:0 auto;
+}
+.dc_div{
+  width:55px;
+  height:55px;
+  line-height:55px;
+}
+.dc_img_div{
+  width:55px;
+  height:25px;
+  line-height:25px;
+  text-align:center;
+  position:absolute;
+}
+.dc_img{
+  width:25px;
+  height:25px;
+  margin-top:5px;
+}
+.dc_text_div{
+  width:55px;
+  margin-top:15px;
+  color:#666;
+  text-align:center;
+  position:absolute;
+}
+.dd_div{
+  width:55px;
+  height:55px;
+  line-height:55px;
+  margin-top:-55px;
+  margin-left:200px;
+}
+.dd_img_div{
+  width:55px;
+  height:25px;
+  line-height:25px;
+  text-align:center;
+  position:absolute;
+}
+.dd_img{
+  width:25px;
+  height:25px;
+  margin-top:5px;
+}
+.dd_text_div{
+  width:55px;
+  margin-top:15px;
+  color:#cd2222;
+  text-align:center;
+  position:absolute;
+}

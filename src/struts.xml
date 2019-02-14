@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="GBK" />
+	<!-- 使用.do比.action书写更加方便 -->
+	<constant name="struts.action.extension" value="action"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"/> 
+	<package name="ScanOrderPhWeb" namespace="/" extends="struts-default,json-default">
+		<!-- Action的相关配置 -->
+		<!-- 通配符配置所有Action -->
+		<!-- 
+		<action name="*_*" class="{1}" method="{2}">
+ 			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">102400000</param>
+				<param name="fileUpload.allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png,image/pjpeg,txt,TXT,SQL,sql</param>
+				<param name="fileUpload.minimumSize">0</param>
+			</interceptor-ref>
+			 -->
+			<!--设置上传路径 -->
+			<!-- 
+			<param name="savePath">/web/uploadImages</param>
+			<result name="success">/index.jsp</result>
+			<result name="reg" type="redirect">/index.jsp</result>
+			<result name="login" type="redirect">/index.jsp</result>
+		</action>
+		 -->
+		 <action name="phoneAction_toSelectSeat" class="PhoneAction" method="toSelectSeat">
+            <result name="success" >/phone/selectSeat/selectSeat.jsp</result>
+             <result name="input" >/index.jsp</result>
+        </action>
+        <action name="phoneAction_toDcMain" class="PhoneAction" method="toDcMain">
+        	<result name="success">/phone/dcMain/dcMain.jsp</result>
+             <result name="input" >/index.jsp</result>
+        </action>
+        <action name="phoneAction_toOrderedList" class="PhoneAction" method="toOrderedList">
+        	<result name="success">/phone/orderedList/orderedList.jsp</result>
+             <result name="input" >/index.jsp</result>
+        </action>
+        <action name="phoneAction_getShopSeatInfoById" class="PhoneAction" method="getShopSeatInfoById">
+        	<result name="success" type="json">
+		　　　　<param name="root">resultMap</param>
+		　　</result>
+        </action>
+        <action name="phoneAction_getShopShowInfoById" class="PhoneAction" method="getShopShowInfoById">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_getCategoryList" class="PhoneAction" method="getCategoryList">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_getGoodsListByCategoryId" class="PhoneAction" method="getGoodsListByCategoryId">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_getOrderDetailsByOrderNumber" class="PhoneAction" method="getOrderDetailsByOrderNumber">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_getOrderDetailsByOrderNumberOL" class="PhoneAction" method="getOrderDetailsByOrderNumberOL">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_checkIfAlreadyExistOrder" class="PhoneAction" method="checkIfAlreadyExistOrder">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_nextAction" class="PhoneAction" method="nextAction">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_reduceProduct" class="PhoneAction" method="reduceProduct">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_plusProduct" class="PhoneAction" method="plusProduct">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_deleteProduct" class="PhoneAction" method="deleteProduct">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_initMenuInfo" class="PhoneAction" method="initMenuInfo">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_confirmOrderButton" class="PhoneAction" method="confirmOrderButton">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_enterAdjustOrder" class="PhoneAction" method="enterAdjustOrder">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_reminderInterface" class="PhoneAction" method="reminderInterface">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+        <action name="phoneAction_addToWishListById" class="PhoneAction" method="addToWishListById">
+        	<result name="success" type="json">
+        		<param name="root">resultMap</param>
+        	</result>
+        </action>
+	</package>
+</struts>    

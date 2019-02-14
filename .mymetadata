@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="CommunityHealth"
+  id="myeclipse.1372664642950"
+  context-root="/CommunityHealth"
+  j2ee-spec="6.0"
+  archive="CommunityHealth.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

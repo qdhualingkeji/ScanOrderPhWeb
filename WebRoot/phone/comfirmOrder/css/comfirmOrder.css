@@ -1,0 +1,154 @@
+@CHARSET "UTF-8";
+.qrdd_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  color:#fff;
+  text-align:center;
+  background-color:#f0665b;
+}
+.imgUrl_img{
+  width:80px;
+  height:80px;
+  margin-top:20px;
+  margin-left:30px;
+}
+.nickName_div{
+  width:80px;
+  height:40px;
+  line-height:40px;
+  margin-left:30px;
+  text-align:center;
+  color:#fff;
+}
+.show_location_div{
+  width:200px;
+  height:40px;
+  line-height:40px;
+  margin-top:-120px;
+  margin-left:160px;
+  border-bottom:#fff dashed 1px;
+}
+.zhuohaoTit_div{
+  margin-top:-40px;
+  margin-left:30px;
+  color:#fff;
+}
+.zhuohao_div{
+  margin-top:-40px;
+  margin-left:80px;
+  color:#fff;
+}
+.consume_div{
+  width:200px;
+  height:40px;
+  line-height:40px;
+  margin-left:160px;
+}
+.foodamount_div{
+  color:#fff;
+}
+.moneyamount_div{
+  color:#fff;
+  margin-top:-40px;
+  margin-left:60px;	
+}
+.ydsp_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  background-color:#ededed;
+  padding-left:30px;
+}
+.ofList_div .item_div{
+  width:100%;
+  height:40px;
+  line-height:40px;
+  border-bottom:#ccc solid 1px;
+}
+.foodName_div{
+  margin-left:30px;
+}
+.foodPrice_div{
+  width:120px;
+  margin-top:-40px;
+  float:right;
+  text-align:right;
+  margin-right:20px;
+}
+.foodMount_div{
+  width:100px;
+  margin-top:-40px;
+  float:right;
+  text-align:right;
+  margin-right:130px;
+}
+
+.space_div{
+  width:100%;
+  height:50px;
+}
+.bottom_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  bottom:0px;
+  position:fixed;
+  background-color:#989898;
+}
+.yidian_img{
+  width:30px;
+  height:30px;
+  margin-left:20px;
+  vertical-align: middle;
+}
+.foodAmount_div{
+  width:20px;
+  height:20px;
+  line-height:20px;
+  text-align:center;
+  margin-top:-42px;
+  margin-left:40px;
+  background-color:#da0003;
+  position:absolute;
+  border-radius:360px;
+}
+.vs_div{
+  width:2px;
+  height:80%;
+  margin-top:-45px;
+  margin-left:65px;
+  background-color:#f9b797;
+}
+.yd_tp_div{
+  width:80px;
+  height:50px;
+  margin-top:-45px;
+  margin-left:77px;
+}
+.yidian_div{
+  width:80px;
+  height:25px;
+  line-height:25px;
+  font-size:14px;
+  color:#626262;
+}
+.totalPrice_div{
+  width:80px;
+  height:25px;
+  line-height:25px;
+  font-size:14px;
+  color:#b42d34;
+}
+.bottompay_div{
+  width:90px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  float:right;
+  margin-top:-45px;
+  margin-right:20px;
+  color:#fff;
+  font-size:18px;
+  background-color:#be2922;
+}

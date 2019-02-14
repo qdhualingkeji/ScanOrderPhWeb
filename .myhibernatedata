@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+#Sat Oct 12 14:54:10 CST 2013
+sessionFactoryName=com.qdhualing.app.dao.HibernateSessionFactory
+genBasicCompId=true
+profile=
+daoSFId=sessionFactory
+version=3.3
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=src/applicationContext.xml
+useJavaTypes=false
+keyGenerator=native
+libInstallFolder=/WebRoot/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=true
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/CommunityHealth/src/hibernate.cfg.xml
+createConfigFile=false
+addLibs2Classpath=true

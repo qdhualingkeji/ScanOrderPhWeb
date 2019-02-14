@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+.main_div{
+  width:100%;
+}
+.ydlb_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  color:#fff;
+  text-align:center;
+  border-bottom:#898989 solid 1px;
+  background-color:#f0665b;
+}
+.productList_div{
+  width:100%;
+}
+.categoryName_div{
+  width:100%;
+  height:30px;
+  line-height:30px;
+  font-size:15px;
+  padding-left:10px;
+  background-color:#f0f0f2;
+}
+.productList_div .item_div{
+  width:100%;
+  height:130px;
+}
+.productList_div .item_div .imgUrl_img{
+  width:120px;
+  height:120px;
+  margin-top:5px;
+  margin-left:15px;
+}
+.productList_div .item_div .productName_div{
+  margin-top:-120px;
+  margin-left:145px;
+}
+.productList_div .item_div .price_div{
+  margin-top:10px;
+  margin-left:145px;
+  font-size:15px;
+  color:#f45047;
+}
+.productList_div .item_div .option_div{
+  margin-top:-52px;
+  margin-left:265px;
+}
+.productList_div .item_div .reduce_img{
+  width:30px;
+  height:30px;
+}
+.productList_div .item_div .quantity_input{
+  width:30px;
+  height:30px;
+  text-align:center;
+  margin-top:-35px;
+  margin-left:30px;
+}
+.productList_div .item_div .plus_img{
+  width:30px;
+  height:30px;
+  margin-top:-30px;
+  margin-left:60px;
+  position:absolute;
+}
+.productList_div .item_div .delete_div{
+  width:90px;
+  height:40px;
+  line-height:40px;
+  margin-top:10px;
+  text-align:center;
+  color:#fff;
+  background-color: #f0665b;
+}
+.space_div{
+  width:100%;
+  height:50px;
+}
+.bottom_div{
+  width:100%;
+  height:50px;
+  line-height:50px;
+  background-color:#f2f2f2;
+  border-bottom:#e5e6e8 solid 1px;
+  bottom:0px;
+  position:fixed;
+  z-index:2;
+}
+.jiaCai_div{
+  width:90px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  color:#fff;
+  margin-top:5px;
+  margin-left:10px;
+  background-color:#f35b4d;
+}
+.moneyAndAmount_div{
+  width:130px;
+  height:40px;
+  line-height:40px;
+  margin-top:-40px;
+  margin-left:130px;
+}
+.foodTypeMount_div{
+  color:#7b7778;
+}
+.foodMoney_div{
+  margin-top:-40px;
+  margin-left:50px;
+  color:#f45047;
+}
+.confirm_div{
+  width:90px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  color:#fff;
+  float:right;
+  margin-top:-40px;
+  margin-right:10px;
+  background-color:#f35b4d;
+}
