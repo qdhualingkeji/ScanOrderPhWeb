@@ -29,7 +29,7 @@ function getOrderDetailsByOrderNumber(){
 		{orderNumber: orderNumber, shopId: shopId, token:token},
 		function(result){
 	        //let productList=[];
-	        //console.log(result);
+	        console.log(result);
 		    if (result.code == 100){
 		    	var productListDiv=$("#productList_div");
 		    	var productList=result.data.productList;

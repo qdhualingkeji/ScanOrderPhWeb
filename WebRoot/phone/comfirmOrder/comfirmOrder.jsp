@@ -227,7 +227,7 @@ function createJsonStr(){
 </script>
 <title>Insert title here</title>
 </head>
-<body>
+<body style="margin: 0px;">
 <div style='width:100%;'>
   <div class="qrdd_div">
     确认订单
