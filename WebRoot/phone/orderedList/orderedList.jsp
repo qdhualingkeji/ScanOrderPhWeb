@@ -29,7 +29,7 @@ function getOrderDetailsByOrderNumber(){
 		{orderNumber: orderNumber, shopId: shopId, token:token},
 		function(result){
 	        //let productList=[];
-	        //console.log(result);
+	        console.log(result);
 		    if (result.code == 100){
 		    	var productListDiv=$("#productList_div");
 		    	var productList=result.data.productList;
@@ -53,9 +53,9 @@ function getOrderDetailsByOrderNumber(){
 		    			      +"<div class=\"productName_div\">"+productList[i].productName+"</div>"
 		    			      +"<div class=\"price_div\">"+productList[i].price+"元</div>"
 		    			      +"<div class=\"option_div\">"
-		    			        +"<img class=\"reduce_img\" src=\""+path+"/phone/image/012.png\" ontouchstart=\"reduceProduct("+i+")\"></img>"
+		    			        +"<img class=\"reduce_img\" src=\""+path+"/phone/image/012.png\" ontouchstart=\"reduceProduct("+productList[i].id+")\"></img>"
 		    			        +"<input class=\"quantity_input\" value=\""+productList[i].quantity+"\"></input>"
-		    			        +"<img class=\"plus_img\" src=\""+path+"/phone/image/013.png\" ontouchstart=\"plusProduct("+i+")\"></img>"
+		    			        +"<img class=\"plus_img\" src=\""+path+"/phone/image/013.png\" ontouchstart=\"plusProduct("+productList[i].id+")\"></img>"
 		    			        +"<div class=\"delete_div\" ontouchstart=\"deleteProduct("+productList[i].id+")\">移除</div>"
 		    			      +"</div>"
 		    			    +"</div>");
@@ -66,15 +66,15 @@ function getOrderDetailsByOrderNumber(){
 	);
 }
 
-function reduceProduct(index){
-	var input=$("#productList_div .item_div").eq(index).find("input[class^='quantity_input']");
+function reduceProduct(id){
+	var input=$("#productList_div #item"+id).find("input[class^='quantity_input']");
 	var quantity=input.val();
 	if (quantity<=1)
       return
     else{
 		input.val(--quantity);
 		$.post("phoneAction_reduceProduct.action",
-			{index:index,quantity:quantity},
+			{id:id,quantity:quantity},
 			function(res){
 				console.log("res==="+res);
 				if(res.result==1){
@@ -85,12 +85,12 @@ function reduceProduct(index){
     }
 }
 
-function plusProduct(index){
-	var input=$("#productList_div .item_div").eq(index).find("input[class^='quantity_input']");
+function plusProduct(id){
+	var input=$("#productList_div #item"+id).find("input[class^='quantity_input']");
 	var quantity=input.val();
 	input.val(++quantity);
 	$.post("phoneAction_plusProduct.action",
-		{index:index,quantity:quantity},
+		{id:id,quantity:quantity},
 		function(res){
 			console.log(res);
 			if(res.result==1){
@@ -101,7 +101,7 @@ function plusProduct(index){
 }
 
 function deleteProduct(id){
-	//console.log("id==="+id);
+	console.log("id==="+id);
 	$("#productList_div div[id='item"+id+"']").remove();
 	$.post("phoneAction_deleteProduct.action",
 		{id:id},

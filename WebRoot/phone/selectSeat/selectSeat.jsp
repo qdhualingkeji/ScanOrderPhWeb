@@ -12,7 +12,8 @@
 <meta content="telephone=no" name="format-detection" />
 <link href="<%=path %>/phone/selectSeat/css/selectSeat.css" rel="stylesheet" type="text/css" />
 <script src="<%=path %>/phone/js/jquery-1.8.2.min.js"></script>
-<script>
+<script type="text/javascript">
+var path='<%=path %>';
 $(function(){
 	getShopSeatInfoById();
 });
@@ -37,8 +38,8 @@ function getShopSeatInfoById(){
 	,"json");
 }
 
-function toDcMain(zhuoNo){
-	location.href="";
+function toDcMain(seatName){
+	location.href=path+"/phoneAction_toDcMain.action?seatName="+seatName;
 }
 </script>
 <title>选择桌号</title>

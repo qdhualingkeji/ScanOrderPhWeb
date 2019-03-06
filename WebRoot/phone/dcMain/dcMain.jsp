@@ -13,7 +13,7 @@
 <script src="<%=path %>/phone/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 var path='<%=path %>';
-var strJiaCai='${requestScope.jiacai}';
+var strJiaCai='${param.jiacai}';
 var orderNumber='${sessionScope.orderNumber}';
 var foodMount = 0;
 var shopId='82';
@@ -24,7 +24,7 @@ var categoryListLength=0;
 $(function(){
 	getShopShowInfoById();
 	getCategoryList();
-	setTimeout("getGoodsListByCategoryId('')","3000");
+	//setTimeout("getGoodsListByCategoryId('')","3000");
 	setTimeout(function(){
 		//alert(goodsListArr);
 	},"3000");
@@ -138,8 +138,10 @@ function getCategoryList(){
 	      );
 }
 	
-function initFoodQuantity(foodsList){
+function initFoodQuantity(foodsList1){
+	var foodsList=convertHtmlToArr(foodsList1);
 	if(strJiaCai=="jiacai"){
+	  /*
       for (var i = 0; i < foodsList.length;i++){
         let food=foodsList[i];
         let iter = getApp().getAllSelectedFood();
@@ -154,9 +156,36 @@ function initFoodQuantity(foodsList){
       dcMain.setData({
         goodsList: foodsList
       });
+      */
+      $.post(path+"/phoneAction_getOrderDetailsByOrderNumberOL.action",
+   		  {orderNumber: orderNumber, shopId: shopId, token:token},
+   		  function(result){
+   			if (result.code == 100){
+   				var productList = result.data.productList;
+	            for (var i = 0; i < foodsList.length; i++){
+	              var food = foodsList[i];
+	              for (var j = 0; j < productList.length; j++) {
+	                var product = productList[j];
+	                if ((food.categoryId == product.categoryId) & (food.id == product.id)) {
+		                console.log(food);
+		                console.log(product);
+	                  //food.quantity = product.quantity;
+	                  var div=$("<div></div>");
+	                  div.append(goodsListArr[food.categoryId]);
+	                  div.find("div[id='item"+product.id+"'] input[class='count_input']").attr("value",product.quantity);
+	                  goodsListArr[food.categoryId]=div.html();
+	                  //console.log(product.quantity);
+	                  //$("#goodsList_div div[id='"+product.id+"'] .count_input").val(product.quantity);
+	                  break;
+	                }
+	              }
+	            }
+   			}
 
-      getGoodsListByCategoryId("");
-      dcMain.calulateMoneyAndAmount();
+   	 	    getGoodsListByCategoryId("");
+	   	    calulateMoneyAndAmount();
+   		  }
+	  );
     }
     else{
       $.post(path+"/phoneAction_getOrderDetailsByOrderNumber.action",
@@ -168,7 +197,7 @@ function initFoodQuantity(foodsList){
 	            for (var i = 0; i < foodsList.length; i++){
 	              var food = foodsList[i];
 	              for (var j = 0; j < productList.length; j++) {
-	                let product = productList[j];
+	                var product = productList[j];
 	                if ((food.categoryId == product.categoryId) & (food.id == product.id)) {
 	                  //food.quantity = product.quantity;
 	                  $("#goodsList_div div[id='"+product.id+"'] .count_input").val(product.quantity);
@@ -219,6 +248,22 @@ function initFoodQuantity(foodsList){
       })
       */
     }
+}
+
+function convertHtmlToArr(foodsList1){
+	var foodsList=[];
+	$("#categoryList_div div[id^='category']").each(function(){
+		var categoryId=$(this).attr("id").substring(8);
+		var id=$(foodsList1[categoryId]).attr("id");
+		if(id!=undefined)
+			id=id.substring(4);
+		//console.log(id);
+		//console.log($(foodsList1[categoryId]).find("div").html());
+		//console.log($(this).html());
+		var food={categoryId:categoryId,id:id};
+		foodsList.push(food);
+	});
+	return foodsList;
 }
 	
 function getGoodsListByCategoryId(categoryId){
@@ -361,7 +406,8 @@ function quJieSuan(){
 		    g.price=$(this).find("div[class='price_div']").text().substring(1);
 		    g.productName=$(this).find("div[class='productName_div']").text();
 			//console.log(g);
-		    gsList.push(g);
+			if(g.quantity>0)
+		    	gsList.push(g);
 		});
 		
 	});

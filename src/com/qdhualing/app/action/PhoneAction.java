@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -48,7 +49,7 @@ public class PhoneAction extends BaseActionSupport {
 	private Integer discountCouponId;
 	private Integer productId;
 	private Integer state;
-
+	
 	public Integer getState() {
 		return state;
 	}
@@ -199,6 +200,9 @@ public class PhoneAction extends BaseActionSupport {
 	private static final String ROOT_IP = "http://120.27.5.36:8080/htkApp/API/buffetFoodAPI/";
 	//private static final String ROOT_IP = "https://www.bainuojiaoche.com/htkApp/API/buffetFoodAPI/";
 	private static final String ROOT_IP1 = "http://120.27.5.36:8080/htkApp/API/wxScanUserAPI/";
+	//private static final String ROOT_IP1 = "http://127.0.0.1:8088/htkApp/API/wxScanUserAPI/";
+	//private static final String ROOT_IP2 = "http://120.27.5.36:8080/htkApp/API/phWebScanUserAPI/";
+	private static final String ROOT_IP2 = "http://192.168.230.1:8088/htkApp/API/phWebScanUserAPI/";
 	
 	//http://localhost:8080/ScanOrderPhWeb/phoneAction_toSelectSeat.action?shopId=82
 	//http://localhost:8080/ScanOrderPhWeb/phoneAction_toDcMain.action?seatName=3
@@ -217,11 +221,38 @@ public class PhoneAction extends BaseActionSupport {
 		
 		HttpSession session = getHttpSession();
 		session.setAttribute("zhuoNo", seatName);
+		
+		String token=(String)session.getAttribute("token");
+		if(StringUtils.isEmpty(token)) {
+			String shopId=session.getAttribute("shopId").toString();
+			login(shopId,seatName);
+		}
 		return SUCCESS;
 	}
 	
 	public String toOrderedList() {
 		
+		return SUCCESS;
+	}
+	
+	public String login(String shopId, String seatName) {
+
+		List<NameValuePair> params=new ArrayList<NameValuePair>();
+		params.add(0, new BasicNameValuePair("shopId", shopId));
+		params.add(1, new BasicNameValuePair("seatName", seatName));
+		try {
+			resultMap=getRespJson(ROOT_IP2+"login", params);
+			JSONObject resultJO = (JSONObject)resultMap.get("result");
+			if(resultJO.getInt("code")==100) {
+				String token=resultJO.getString("data");
+				System.out.println("token==="+token);
+				HttpSession session = getHttpSession();
+				session.setAttribute("token", token);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -296,6 +327,7 @@ public class PhoneAction extends BaseActionSupport {
 			String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
 			JSONArray orderedFoodJA = JSONArray.fromObject(str);
 			List<OrderFoodBean> productList = JSONArray.toList(orderedFoodJA,OrderFoodBean.class);
+			//String str = new String("Âø´È§ê".getBytes("gbk"), "UTF-8");aaa
 			dataJsonMap.put("productList", productList);
 			dataJsonMap.put("commitTime", "1997-07-01");
 			
@@ -323,7 +355,7 @@ public class PhoneAction extends BaseActionSupport {
 			resultMap.put("code", 100);
 			JSONObject dataJO = new JSONObject();
 			String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
-			dataJO.put("productList", JSONArray.fromObject(str));
+			dataJO.put("productList", JSONArray.fromObject(ofList));
 			//dataJO.put("productList", ofList);
 			resultMap.put("data", dataJO);
 		} catch (Exception e) {
@@ -362,14 +394,23 @@ public class PhoneAction extends BaseActionSupport {
 		}
 		*/
 		try {
+			System.out.println("goodsJAStr111==="+goodsJAStr);
+			goodsJAStr = new String(goodsJAStr.getBytes("gbk"), "UTF-8");
 			goodsJAStr=goodsJAStr.replaceAll("\\\\\"", "\"");
-			System.out.println("goodsJAStr==="+goodsJAStr);
+			System.out.println("goodsJAStr222==="+goodsJAStr);
 			JSONArray goodsJA = JSONArray.fromObject(goodsJAStr);
 			//System.out.println("goodsJA==="+goodsJA.size());
 			for (int i = 0; i < goodsJA.size(); i++) {
 				JSONObject goodsJO = (JSONObject)goodsJA.get(i);
 				if(Integer.valueOf(goodsJO.getString("quantity"))>0&&!checkIfExist(goodsJO)){
 					OrderFoodBean bean=new OrderFoodBean();
+					bean.setCategoryId(goodsJO.getInt("categoryId"));
+					bean.setCategoryName(goodsJO.getString("categoryName"));
+					bean.setId(goodsJO.getInt("id"));
+					bean.setQuantity(goodsJO.getInt("quantity"));
+					bean.setImgUrl(goodsJO.getString("imgUrl"));
+					bean.setPrice(goodsJO.getDouble("price"));
+					bean.setProductName(goodsJO.getString("productName"));
 					System.out.println("===AlreadySelectFoodData.addBean");
 					AlreadySelectFoodData.addBean(bean);
 				}
@@ -399,11 +440,17 @@ public class PhoneAction extends BaseActionSupport {
 	
 	public String reduceProduct() {
 		
-		System.out.println("reduceProduct.index==="+index);
+		System.out.println("reduceProduct.id==="+id);
 		System.out.println("reduceProduct.quantity==="+quantity);
 		
 		try {
 			//AlreadySelectFoodData.getAllFoodList().get(index).setQuantity(quantity);
+			List<OrderFoodBean> allFoodList = AlreadySelectFoodData.getAllFoodList();
+			for (OrderFoodBean orderFoodBean : allFoodList) {
+				if(id==orderFoodBean.getId()) {
+					orderFoodBean.setQuantity(quantity);
+				}
+			}
 			
 			resultMap=new HashMap<String, Object>();
 			resultMap.put("result", "1");
@@ -417,11 +464,17 @@ public class PhoneAction extends BaseActionSupport {
 	
 	public String plusProduct() {
 		
-		System.out.println("plusProduct.index==="+index);
+		System.out.println("plusProduct.id==="+id);
 		System.out.println("plusProduct.quantity==="+quantity);
 
 		try {
 			//AlreadySelectFoodData.getAllFoodList().get(index).setQuantity(quantity);
+			List<OrderFoodBean> allFoodList = AlreadySelectFoodData.getAllFoodList();
+			for (OrderFoodBean orderFoodBean : allFoodList) {
+				if(id==orderFoodBean.getId()) {
+					orderFoodBean.setQuantity(quantity);
+				}
+			}
 			
 			resultMap=new HashMap<String, Object>();
 			resultMap.put("result", "1");
@@ -566,7 +619,11 @@ public class PhoneAction extends BaseActionSupport {
 	
 	public static void main(String[] args) {
 		try {
+			/*
 			JSONArray.fromObject("[{'categoryId':'34','categoryName':'Âø´È§ê','id':'47','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg','price':'10','productName':'ÁæéÂë≥È∏°ËÖøÂ†?'},{'categoryId':'34','categoryName':'Âø´È§ê','id':'49','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg','price':'20','productName':'ÁâõËÇâÈù?},{'categoryId':'34','categoryName':'Âø´È§ê','id':'50','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg','price':'8','productName':'ÂØøÂè∏'},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'51','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg','price':'45','productName':'ÁîüËí∏‰∫îËä±ËÇ?},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'52','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg','price':'75','productName':'ÊùøÊ†óÊâ£È∏≠'},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'53','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg','price':'80','productName':'Ê≥°Ê§íÈ±?},{'categoryId':'37','categoryName':'È§êÂÖ∑','id':'54','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg','price':'10','productName':'‰∏?¨°ÊÄßÈ§êÂÖ?}]");
+			*/
+			String str = new String("Âø´È§ê".getBytes("gbk"), "UTF-8");
+			System.out.println("str==="+str);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
