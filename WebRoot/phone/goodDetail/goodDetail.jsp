@@ -3,8 +3,6 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	String productName=request.getParameter("productName");
-	productName=new String(productName.getBytes("ISO-8859-1"),"UTF-8");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,8 +13,11 @@
 <script src="<%=path %>/phone/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 var path='<%=path %>';
-var num = 1;
+var num = '${param.quantity}'==0?1:'${param.quantity}';
+var shopId='${sessionScope.shopId}';
 var token='${sessionScope.token}';
+var good={id:'${param.id}',productName:'${param.productName}',imgUrl:'${param.imgUrl}',monthlySalesVolume:'${param.monthlySalesVolume}',
+		price:'${param.price}',collectState:'${param.collectState}',grade:'${param.grade}',categoryId:'${param.categoryId}',categoryName:'${param.categoryName}'};
 
 $(function(){
 	$("#sum_input").val(num);
@@ -34,14 +35,14 @@ function refreshUI(){
       shoucangImgUrl=path+"/phone/image/014.jpg";
     }
     $("#sciu_div").attr("src",shoucangImgUrl);
-    updateTotalPriceAndNumber(1);
+    updateTotalPriceAndNumber(num);
 }
 
 function updateTotalPriceAndNumber(amount){
 	var price='${param.price}';
 	$("#foodAmount_div").text(amount);
 	$("#totalPrice_div").text(price * amount);
-	$("#zongjia_div").text(price * amount);
+	$("#zongjia_div").html("总价:"+price * amount);
     //goodDetail.data.good.quantity=num;
 }
 
@@ -98,7 +99,7 @@ function setStarNumber(){
 }
 
 function shouCang(){
-	var collectState = '${param.collectState}';
+	var collectState = good.collectState;
     if(collectState==1){
       postIsCollect(0);
     }
@@ -115,14 +116,15 @@ function postIsCollect(isCollect){
    			var result = res.result;
    			var shoucangImgUrl;
    	        if (result.code == 100 & good.collectState==1) {
-   	          goodDetail.data.good.collectState=0;
+   	          good.collectState=0;
    	          shoucangImgUrl=path+"/phone/image/014.jpg";
    	          $("#sciu_div").attr("src",shoucangImgUrl);
    	          alert("已取消收藏");
    	        }
-   	        else if (data.code == 100 & good.collectState == 0) {
-   	          goodDetail.data.good.collectState = 1;
+   	        else if (result.code == 100 & good.collectState == 0) {
+   	          good.collectState = 1;
    	          shoucangImgUrl=path+"/phone/image/020.png";
+   	          $("#sciu_div").attr("src",shoucangImgUrl);
    	       	  alert("已收藏");
    	        }
    		}
@@ -181,19 +183,62 @@ function jianGood(){
 }
 
 function addFoodToList(){
+	var gsList=[];
+	var categoryId=good.categoryId;
+	var categoryName=good.categoryName;
+	var id=good.id;////这个id就是产品id，productId没有用
+	var quantity=parseInt($("#sum_input").val());
+	var imgUrl=good.imgUrl;
+	var price=good.price;
+	var productName=good.productName;
+	var b={categoryId:categoryId,categoryName:categoryName,id:id,quantity:quantity,imgUrl:imgUrl,price:price,productName:productName};
+	gsList.push(b);
+	checkIfAlreadyExistOrder(gsList);
+}
+
+function checkIfAlreadyExistOrder(gsList){
 	
+	$.post(path+"/phoneAction_checkIfAlreadyExistOrder.action",
+		{shopId: shopId, token:token},
+		function(res){
+		  var result=res.result;
+		  //console.log(result.code);
+		  if (result.code == 100){
+			nextAction(gsList,"xiadan");
+		  }
+		  else{
+			nextAction(gsList,"tiaodan");
+		  }
+		}
+	);
+}
+
+function nextAction(gsList, type){
+	//console.log(JSON.stringify(gsList));
+	var gsStr=JSON.stringify(gsList);
+	var re = new RegExp("\"","g"); 
+	//console.log("==="+gsStr.replace(re,"'"));
+	gsStr=gsStr.replace(re,"\\\"");
+	$.post(path+"/phoneAction_nextAction.action",
+		{goodsJAStr:gsStr},
+		function(res){
+			var result=res.result;
+			if(result==1)
+				location.href=path+"/phoneAction_toOrderedList.action?type="+type;
+		}
+	);
 }
 </script>
 <title>Insert title here</title>
 </head>
-<body>
+<body style="margin: 0px;">
 <div class='main_div'>
   <div class='title_div'>
-    <%=productName %>
+    ${param.productName}
   </div>
   <img class='imgUrl_img' src='${param.imgUrl}' style='width:100%;height:200px;'/>
   <div class='name_sc_div' style='width:100%;height:50px;line-height:50px;'>
-    <div class='productName_div' style='margin-left:20px;color:#333;'><%=productName %></div>
+    <div class='productName_div' style='margin-left:20px;color:#333;'>${param.productName}</div>
     <div class='shoucang_div' style='float:right;margin-top:-50px;margin-right:20px;color:#747474;'>收藏</div>
     <img class="sciu_div" id="sciu_div" src="" onclick="shouCang()" style='width:20px;height:20px;float:right;margin-top:-35px;margin-right:65px;'/>
   </div>

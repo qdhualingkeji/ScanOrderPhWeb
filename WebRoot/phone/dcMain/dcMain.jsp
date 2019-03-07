@@ -16,8 +16,8 @@ var path='<%=path %>';
 var strJiaCai='${param.jiacai}';
 var orderNumber='${sessionScope.orderNumber}';
 var foodMount = 0;
-var shopId='82';
-//var shopId='${sessionScope.shopId}';
+//var shopId='82';
+var shopId='${sessionScope.shopId}';
 var token='${sessionScope.token}';
 var goodsListArr=[];
 var categoryListLength=0;
@@ -166,9 +166,9 @@ function initFoodQuantity(foodsList1){
 	              var food = foodsList[i];
 	              for (var j = 0; j < productList.length; j++) {
 	                var product = productList[j];
+	                //console.log(food.id);
 	                if ((food.categoryId == product.categoryId) & (food.id == product.id)) {
-		                console.log(food);
-		                console.log(product);
+		                //console.log(product);
 	                  //food.quantity = product.quantity;
 	                  var div=$("<div></div>");
 	                  div.append(goodsListArr[food.categoryId]);
@@ -254,14 +254,17 @@ function convertHtmlToArr(foodsList1){
 	var foodsList=[];
 	$("#categoryList_div div[id^='category']").each(function(){
 		var categoryId=$(this).attr("id").substring(8);
-		var id=$(foodsList1[categoryId]).attr("id");
-		if(id!=undefined)
-			id=id.substring(4);
-		//console.log(id);
-		//console.log($(foodsList1[categoryId]).find("div").html());
-		//console.log($(this).html());
-		var food={categoryId:categoryId,id:id};
-		foodsList.push(food);
+		var div=$("<div></div>");
+		div.append(foodsList1[categoryId]);
+		div.find("div[id^='item']").each(function(){
+			var id=$(this).attr("id");
+			if(id!=undefined)
+				id=id.substring(4);
+			//console.log($(foodsList1[categoryId]).find("div").html());
+			//console.log(id);
+			var food={categoryId:categoryId,id:id};
+			foodsList.push(food);
+		});
 	});
 	return foodsList;
 }
@@ -304,12 +307,12 @@ function getGoodsListByCategoryId(categoryId){
 	                    //goodsList[j].display = "none";
 	                    
 	                	goodsDiv.append("<div class=\"item\" id=\"item"+goodsList[i].id+"\" categoryId=\""+goodsList[i].categoryId+"\" categoryName=\""+goodsList[i].categoryName+"\">"
-	                	+"<img class=\"goods_img\" src=\""+goodsList[i].imgUrl+"\" onclick=\"goGoodsdetail('"+goodsList[i].id+"','"+goodsList[i].productName+"','"+goodsList[i].imgUrl+"','"+goodsList[i].monthlySalesVolume+"','"+goodsList[i].price+"','"+goodsList[i].collectState+"','"+goodsList[i].grade+"')\"></img>"
+	                	+"<img class=\"goods_img\" src=\""+goodsList[i].imgUrl+"\" onclick=\"goGoodsdetail('"+goodsList[i].id+"','"+goodsList[i].productName+"','"+goodsList[i].imgUrl+"','"+goodsList[i].monthlySalesVolume+"','"+goodsList[i].price+"','"+goodsList[i].collectState+"','"+goodsList[i].grade+"','"+goodsList[i].categoryId+"','"+goodsList[i].categoryName+"')\"></img>"
 	                	+"<div class=\"productName_div\">"+goodsList[i].productName+"</div>"
 		                +"<div class=\"price_div\">￥"+goodsList[i].price+"</div>"
 		   		        +"<div class=\"option_div\">"
 		   		        +"<img class=\"remove_img\" src=\""+path+"/phone/image/002.png\" ontouchstart=\"removeGood('"+goodsList[i].id+"')\"></img>"
-		   		        +"<input class=\"count_input\" value=\"0\"></input>"
+		   		        +"<input class=\"count_input\" id=\"count_input"+goodsList[i].id+"\" value=\"0\"></input>"
 		   		        +"<img class=\"add_img\" src=\""+path+"/phone/image/003.png\" ontouchstart=\"addGood('"+goodsList[i].id+"')\"></img>"
 		   		        +"</div>"
 		   		        +"</div>");
@@ -325,7 +328,7 @@ function getGoodsListByCategoryId(categoryId){
 		              */
 				  }
 				  if($("#categoryList_div .item").length==categoryListLength){
-					  initFoodQuantity(goodsListArr);					  
+					  initFoodQuantity(goodsListArr);			  
 				  }
        	}
        );
@@ -335,8 +338,9 @@ function getGoodsListByCategoryId(categoryId){
     }
 }
 
-function goGoodsdetail(id,productName,imgUrl,monthlySalesVolume,price,collectState,grade){
-	location.href=path+"/phone/goodDetail/goodDetail.jsp?id="+id+"&productName="+productName+"&imgUrl="+imgUrl+"&monthlySalesVolume="+monthlySalesVolume+"&price="+price+"&collectState="+collectState+"&grade="+grade;
+function goGoodsdetail(id,productName,imgUrl,monthlySalesVolume,price,collectState,grade,categoryId,categoryName){
+	var quantity=$("input[id='count_input"+id+"']").val();
+	location.href=path+"/phone/goodDetail/goodDetail.jsp?id="+id+"&productName="+productName+"&imgUrl="+imgUrl+"&monthlySalesVolume="+monthlySalesVolume+"&price="+price+"&collectState="+collectState+"&grade="+grade+"&categoryId="+categoryId+"&categoryName="+categoryName+"&quantity="+quantity;
 }
 
 function addGood(id){
@@ -496,6 +500,7 @@ function goOrder(){
     <div class="sum_price_div" id="sum_price_div">
     </div>
   </div>
+  <!-- 
   <div class='bottom2_div'>
     <div class='but_div'>
       <div class='dc_div'>
@@ -516,6 +521,7 @@ function goOrder(){
       </div>
     </div>
   </div>
+   -->
 </div>
 </body>
 </html>
