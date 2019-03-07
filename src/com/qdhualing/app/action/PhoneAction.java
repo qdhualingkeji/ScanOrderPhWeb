@@ -197,7 +197,8 @@ public class PhoneAction extends BaseActionSupport {
 	/**
 	 * 请求远程服务器接口前缀常量
 	 * **/
-	private static final String ROOT_IP = "http://120.27.5.36:8080/htkApp/API/buffetFoodAPI/";
+	//private static final String ROOT_IP = "http://120.27.5.36:8080/htkApp/API/buffetFoodAPI/";
+	//private static final String ROOT_IP = "http://192.168.230.1:8088/htkApp/API/buffetFoodAPI/";
 	//private static final String ROOT_IP = "http://192.168.230.1:8088/htkApp/API/buffetFoodAPI/";
 	//private static final String ROOT_IP = "https://www.bainuojiaoche.com/htkApp/API/buffetFoodAPI/";
 	private static final String ROOT_IP1 = "http://120.27.5.36:8080/htkApp/API/wxScanUserAPI/";
