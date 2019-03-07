@@ -13,6 +13,7 @@
 }
 .productList_div{
   width:100%;
+  background-color: #fff;
 }
 .categoryName_div{
   width:100%;
@@ -57,14 +58,14 @@
   width:30px;
   height:30px;
   text-align:center;
-  margin-top:15px;
+  margin-top:18px;
   margin-left:10px;
   position: absolute;
 }
 .productList_div .item_div .plus_img{
   width:30px;
   height:30px;
-  margin-top:15px;
+  margin-top:18px;
   margin-left:50px;
   position:absolute;
 }
@@ -72,7 +73,7 @@
   width:90px;
   height:40px;
   line-height:40px;
-  margin-top:10px;
+  margin-top:15px;
   text-align:center;
   color:#fff;
   background-color: #f0665b;
@@ -86,6 +87,7 @@
   height:50px;
   line-height:50px;
   background-color:#f2f2f2;
+  border-top:#e5e6e8 solid 1px;
   border-bottom:#e5e6e8 solid 1px;
   bottom:0px;
   position:fixed;

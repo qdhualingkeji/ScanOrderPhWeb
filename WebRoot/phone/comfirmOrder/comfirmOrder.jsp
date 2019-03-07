@@ -240,6 +240,7 @@ function createJsonStr(){
   <div class="qrdd_div">
     确认订单
   </div>
+    <div class="back_div" onclick="history.go(-1);">返回</div>
   <div style='width:100%;height:150px;background-color:#f0665b;'>
     <img class="imgUrl_img" src=''></img>
     <div class="nickName_div">{{nickName}}</div>

@@ -270,7 +270,18 @@ function convertHtmlToArr(foodsList1){
 }
 	
 function getGoodsListByCategoryId(categoryId){
+	$(".categoryList_div div[id^='category']").each(function(){
+		if($(this).attr("id")==categoryId){
+			//$(this).css("color","#639DCB");
+			$(this).css("background-color","#fff");
+		}
+		else{
+			//$(this).css("color","#505050");
+			$(this).css("background-color","#f0f4f3");
+		}
+	});
 	if(categoryId==""){
+		$(".categoryList_div div[id^='category']").eq(0).css("background-color","#fff");
 		categoryId = $("#categoryList_div .item").eq(0).attr("id").substring(8);
 	}
 	else

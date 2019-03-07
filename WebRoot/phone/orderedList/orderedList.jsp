@@ -154,7 +154,7 @@ function confirm(){
 </script>
 <title>Insert title here</title>
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px;background-color: #f0f0f2;">
 <div class='main_div'>
   <div class='ydlb_div'>
     已点列表
