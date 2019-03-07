@@ -16,8 +16,8 @@ var path='<%=path %>';
 var strJiaCai='${param.jiacai}';
 var orderNumber='${sessionScope.orderNumber}';
 var foodMount = 0;
-var shopId='82';
-//var shopId='${sessionScope.shopId}';
+//var shopId='82';
+var shopId='${sessionScope.shopId}';
 var token='${sessionScope.token}';
 var goodsListArr=[];
 var categoryListLength=0;
@@ -166,9 +166,9 @@ function initFoodQuantity(foodsList1){
 	              var food = foodsList[i];
 	              for (var j = 0; j < productList.length; j++) {
 	                var product = productList[j];
+	                //console.log(food.id);
 	                if ((food.categoryId == product.categoryId) & (food.id == product.id)) {
-		                console.log(food);
-		                console.log(product);
+		                //console.log(product);
 	                  //food.quantity = product.quantity;
 	                  var div=$("<div></div>");
 	                  div.append(goodsListArr[food.categoryId]);
@@ -254,14 +254,17 @@ function convertHtmlToArr(foodsList1){
 	var foodsList=[];
 	$("#categoryList_div div[id^='category']").each(function(){
 		var categoryId=$(this).attr("id").substring(8);
-		var id=$(foodsList1[categoryId]).attr("id");
-		if(id!=undefined)
-			id=id.substring(4);
-		//console.log(id);
-		//console.log($(foodsList1[categoryId]).find("div").html());
-		//console.log($(this).html());
-		var food={categoryId:categoryId,id:id};
-		foodsList.push(food);
+		var div=$("<div></div>");
+		div.append(foodsList1[categoryId]);
+		div.find("div[id^='item']").each(function(){
+			var id=$(this).attr("id");
+			if(id!=undefined)
+				id=id.substring(4);
+			//console.log($(foodsList1[categoryId]).find("div").html());
+			//console.log(id);
+			var food={categoryId:categoryId,id:id};
+			foodsList.push(food);
+		});
 	});
 	return foodsList;
 }
@@ -325,7 +328,7 @@ function getGoodsListByCategoryId(categoryId){
 		              */
 				  }
 				  if($("#categoryList_div .item").length==categoryListLength){
-					  initFoodQuantity(goodsListArr);					  
+					  initFoodQuantity(goodsListArr);			  
 				  }
        	}
        );

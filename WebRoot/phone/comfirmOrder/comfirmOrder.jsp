@@ -20,10 +20,10 @@ var discountAmount=0;
 var remark;
 var orderAmount=20;
 var discountCouponId=0;
-var shopId="82";
-var seatName="003";
-//var shopId='${sessionScope.shopId}';
-//var seatName='${sessionScope.zhuoNo}';
+//var shopId="82";
+//var seatName="4";
+var shopId='${sessionScope.shopId}';
+var seatName='${sessionScope.zhuoNo}';
 var token='${sessionScope.token}';
 
 var pay; 
@@ -125,13 +125,21 @@ function commitOrderBtn(){
     var shiFu=$("#shiFu").text();
     orderAmount=shiFu.substring(3,shiFu.length-1);
     var jsonStr = createJsonStr();
-    //let jsonStr = "[{productId:47,productName:美味鸡腿堡,quantity:2,price:10.0}]";
+    //var jsonStr = "[{productId:47,productName:美味鸡腿堡,quantity:2,price:10.0}]";
     console.log("jsonStr===" + jsonStr);
     
     $.post(path+"/phoneAction_confirmOrderButton.action",
    		{shopId: shopId, remark: remark, jsonProductList: jsonStr, discountAmount: discountAmount, seatName: seatName, orderAmount: orderAmount, discountCouponId: discountCouponId, token:token},
    		function(res){
    			console.log("res==="+JSON.stringify(res));
+   			var result=res.result;
+   			if(result.code==100){
+   				alert("订单:"+result.data+",下单"+result.message);
+   				location.href=path+"/phoneAction_toSelectSeat.action?shopId="+shopId;
+   			}
+   			else{
+   				alert(result.message);
+   			}
    		}
 	);
     

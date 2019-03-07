@@ -13,8 +13,10 @@
 <script src="<%=path %>/phone/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
 var path='<%=path %>';
-var orderNumber='${sessionScope.orderNumber}';
+//var orderNumber='${sessionScope.orderNumber}';
+var orderNumber="1903066055210284";
 var shopId='${sessionScope.shopId}';
+var seatName='${sessionScope.zhuoNo}';
 var token='${sessionScope.token}';
 
 $(function(){
@@ -237,7 +239,7 @@ function cuiDanBtn(){
 }
 
 function goDianCai(){
-	location.href=path+"/phone/dcMain/dcMain.jsp";
+	location.href=path+"/phoneAction_toDcMain.action?seatName="+seatName;
 }
 </script>
 <title>Insert title here</title>
@@ -293,6 +295,7 @@ function goDianCai(){
       <div class="totalConsume_div" id="totalConsume_div"></div>
     </div>
   </div>
+  <!-- 
   <div class='tdcd_div'>
     <div class='cd_div' onclick="cuiDan()">
       <img class='cd_img' src='<%=path %>/phone/image/009.png'></img>
@@ -303,6 +306,7 @@ function goDianCai(){
       <div class='td_text_div'>调单</div>
     </div>
   </div>
+   -->
   <div style='width:100%;height:20px;background-color:#ededed;'></div>
   <div class='space2_div'></div>
   <div class='bottom_div'>

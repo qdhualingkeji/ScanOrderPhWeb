@@ -16,8 +16,8 @@ var foodMount=0;
 var type;
 var path='<%=path %>';
 var type='${requestScope.type}';
-var shopId='82';
-//var shopId='${sessionScope.shopId}';
+//var shopId='82';
+var shopId='${sessionScope.shopId}';
 var orderNumber='${sessionScope.orderNumber}';
 var token;
 $(function(){
