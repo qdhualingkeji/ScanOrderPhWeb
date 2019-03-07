@@ -198,11 +198,12 @@ public class PhoneAction extends BaseActionSupport {
 	 * «Î«Û‘∂≥Ã∑˛ŒÒ∆˜Ω”ø⁄«∞◊∫≥£¡ø
 	 * **/
 	private static final String ROOT_IP = "http://120.27.5.36:8080/htkApp/API/buffetFoodAPI/";
+	//private static final String ROOT_IP = "http://192.168.230.1:8088/htkApp/API/buffetFoodAPI/";
 	//private static final String ROOT_IP = "https://www.bainuojiaoche.com/htkApp/API/buffetFoodAPI/";
 	private static final String ROOT_IP1 = "http://120.27.5.36:8080/htkApp/API/wxScanUserAPI/";
 	//private static final String ROOT_IP1 = "http://127.0.0.1:8088/htkApp/API/wxScanUserAPI/";
-	//private static final String ROOT_IP2 = "http://120.27.5.36:8080/htkApp/API/phWebScanUserAPI/";
-	private static final String ROOT_IP2 = "http://192.168.230.1:8088/htkApp/API/phWebScanUserAPI/";
+	private static final String ROOT_IP2 = "http://120.27.5.36:8080/htkApp/API/phWebScanUserAPI/";
+	//private static final String ROOT_IP2 = "http://192.168.230.1:8088/htkApp/API/phWebScanUserAPI/";
 	
 	//http://localhost:8080/ScanOrderPhWeb/phoneAction_toSelectSeat.action?shopId=82
 	//http://localhost:8080/ScanOrderPhWeb/phoneAction_toDcMain.action?seatName=3
@@ -324,10 +325,10 @@ public class PhoneAction extends BaseActionSupport {
 			dataJsonMap.put("orderState", 0);
 			dataJsonMap.put("orderTime", "1997-07-01");
 			
-			String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
-			JSONArray orderedFoodJA = JSONArray.fromObject(str);
-			List<OrderFoodBean> productList = JSONArray.toList(orderedFoodJA,OrderFoodBean.class);
-			//String str = new String("Âø´È§ê".getBytes("gbk"), "UTF-8");aaa
+			List<OrderFoodBean> productList = AlreadySelectFoodData.getAllFoodList();
+			//String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
+			//JSONArray orderedFoodJA = JSONArray.fromObject(str);
+			//List<OrderFoodBean> productList = JSONArray.toList(orderedFoodJA,OrderFoodBean.class);
 			dataJsonMap.put("productList", productList);
 			dataJsonMap.put("commitTime", "1997-07-01");
 			
@@ -395,9 +396,9 @@ public class PhoneAction extends BaseActionSupport {
 		*/
 		try {
 			System.out.println("goodsJAStr111==="+goodsJAStr);
-			goodsJAStr = new String(goodsJAStr.getBytes("gbk"), "UTF-8");
+			//goodsJAStr = new String(goodsJAStr.getBytes("gbk"), "UTF-8");
 			goodsJAStr=goodsJAStr.replaceAll("\\\\\"", "\"");
-			System.out.println("goodsJAStr222==="+goodsJAStr);
+			//System.out.println("goodsJAStr222==="+goodsJAStr);
 			JSONArray goodsJA = JSONArray.fromObject(goodsJAStr);
 			//System.out.println("goodsJA==="+goodsJA.size());
 			for (int i = 0; i < goodsJA.size(); i++) {
@@ -507,10 +508,10 @@ public class PhoneAction extends BaseActionSupport {
 	
 	public String initMenuInfo() {
 		
-		//List<OrderFoodBean> orderedFoodList = AlreadySelectFoodData.getAllFoodList();
-		String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
-		JSONArray orderedFoodJA = JSONArray.fromObject(str);
-		List<OrderFoodBean> orderedFoodList = JSONArray.toList(orderedFoodJA,OrderFoodBean.class);
+		List<OrderFoodBean> orderedFoodList = AlreadySelectFoodData.getAllFoodList();
+		//String str = "[{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"47\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg\",\"price\":\"10\",\"productName\":\"√¿Œ∂º¶Õ»±§\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"49\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg\",\"price\":\"20\",\"productName\":\"≈£»‚√Ê\"},{\"categoryId\":\"34\",\"categoryName\":\"øÏ≤Õ\",\"id\":\"50\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg\",\"price\":\"8\",\"productName\":\" ŸÀæ\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"51\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg\",\"price\":\"45\",\"productName\":\"…˙’ÙŒÂª®»‚\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"52\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg\",\"price\":\"75\",\"productName\":\"∞Â¿ıø€—º\"},{\"categoryId\":\"36\",\"categoryName\":\"≥¥≤À\",\"id\":\"53\",\"quantity\":\"2\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg\",\"price\":\"80\",\"productName\":\"≈›Ω∑”„\"},{\"categoryId\":\"37\",\"categoryName\":\"≤Õæﬂ\",\"id\":\"54\",\"quantity\":\"3\",\"imgUrl\":\"http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg\",\"price\":\"10\",\"productName\":\"“ª¥Œ–‘≤Õæﬂ\"}]";
+		//JSONArray orderedFoodJA = JSONArray.fromObject(str);
+		//List<OrderFoodBean> orderedFoodList = JSONArray.toList(orderedFoodJA,OrderFoodBean.class);
 		
 		resultMap=new HashMap<String, Object>();
 		if(orderedFoodList.size()>0){
@@ -525,16 +526,16 @@ public class PhoneAction extends BaseActionSupport {
 	
 	public String confirmOrderButton() {
 
-		List<NameValuePair> params=new ArrayList<NameValuePair>();
-		params.add(0, new BasicNameValuePair("shopId", shopId));
-		params.add(1, new BasicNameValuePair("remark", remark));
-		params.add(2, new BasicNameValuePair("jsonProductList", jsonProductList));
-		params.add(3, new BasicNameValuePair("discountAmount", discountAmount+""));
-		params.add(4, new BasicNameValuePair("seatName", seatName));
-		params.add(5, new BasicNameValuePair("orderAmount", orderAmount));
-		params.add(6, new BasicNameValuePair("discountCouponId", discountCouponId+""));
-		params.add(7, new BasicNameValuePair("token", token));
 		try {
+			List<NameValuePair> params=new ArrayList<NameValuePair>();
+			params.add(0, new BasicNameValuePair("shopId", shopId));
+			params.add(1, new BasicNameValuePair("remark", remark));
+			params.add(2, new BasicNameValuePair("jsonProductList", jsonProductList));
+			params.add(3, new BasicNameValuePair("discountAmount", discountAmount+""));
+			params.add(4, new BasicNameValuePair("seatName", seatName));
+			params.add(5, new BasicNameValuePair("orderAmount", orderAmount));
+			params.add(6, new BasicNameValuePair("discountCouponId", discountCouponId+""));
+			params.add(7, new BasicNameValuePair("token", token));
 			resultMap=getRespJson(ROOT_IP+"confirmOrderButton", params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -622,7 +623,7 @@ public class PhoneAction extends BaseActionSupport {
 			/*
 			JSONArray.fromObject("[{'categoryId':'34','categoryName':'Âø´È§ê','id':'47','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521421139963.jpg','price':'10','productName':'ÁæéÂë≥È∏°ËÖøÂ†?'},{'categoryId':'34','categoryName':'Âø´È§ê','id':'49','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521428838821.jpg','price':'20','productName':'ÁâõËÇâÈù?},{'categoryId':'34','categoryName':'Âø´È§ê','id':'50','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429424766.jpg','price':'8','productName':'ÂØøÂè∏'},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'51','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521429984947.jpg','price':'45','productName':'ÁîüËí∏‰∫îËä±ËÇ?},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'52','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521430362329.jpg','price':'75','productName':'ÊùøÊ†óÊâ£È∏≠'},{'categoryId':'36','categoryName':'ÁÇíËèú','id':'53','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521532104026.jpg','price':'80','productName':'Ê≥°Ê§íÈ±?},{'categoryId':'37','categoryName':'È§êÂÖ∑','id':'54','quantity':'0','imgUrl':'http://120.27.5.36:8080/htkApp/upload/shop/buffetFood/1521597879066.jpg','price':'10','productName':'‰∏?¨°ÊÄßÈ§êÂÖ?}]");
 			*/
-			String str = new String("Âø´È§ê".getBytes("gbk"), "UTF-8");
+			String str = new String("‰∏?Ê¨°Ê?ßÈ§êÂÖ∑\".getBytes("gbk"), "UTF-8");
 			System.out.println("str==="+str);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
