@@ -233,18 +233,19 @@ function createJsonStr(){
     return result;
 }
 </script>
-<title>Insert title here</title>
+<title>确认订单</title>
 </head>
 <body style="margin: 0px;">
 <div style='width:100%;'>
   <div class="qrdd_div">
     确认订单
   </div>
-  <div style='width:100%;height:150px;background-color:#f0665b;'>
-    <img class="imgUrl_img" src=''></img>
-    <div class="nickName_div">{{nickName}}</div>
+  <div class="back_div" onclick="history.go(-1);">返回</div>
+  <div class="top_div">
+    <img class="imgUrl_img" src="<%=path %>/phone/image/024.jpg"></img>
+    <div class="nickName_div"></div>
     <div class="show_location_div">
-      <img src='<%=path %>/phone/image/021.png' style='width:20px;height:20px;margin-left:5px;'></img>
+      <img class="zhuohao_img" src="<%=path %>/phone/image/021.png"></img>
       <div class="zhuohaoTit_div">桌号</div>
       <div class="zhuohao_div" id="zhuohao_div"></div>
     </div>
@@ -254,29 +255,22 @@ function createJsonStr(){
     </div>
   </div>
   <div class="ydsp_div">
-    已点商品
+  	<span class="ydsp_span">已点商品</span>
   </div>
-  <div class="ofList_div" id="ofList_div" wx:for-items="{{orderedFood.productList}}">
-  	<!-- 
-    <div class='item_div'>
-      <div class='foodName_div'>{{item.productName}}</div>
-      <div class='foodPrice_div'>{{item.price}}元</div>
-      <div class='foodMount_div'>{{item.quantity}}</div>
-    </div>
-     -->
+  <div class="ofList_div" id="ofList_div">
   </div>
-  <div style='width:100%;height:40px;line-height:40px;background-color:#fff;'>
-    <div class="totalAmount" id="totalAmount" style='float:right;margin-right:20px;'>
+  <div class="totalAmount_div">
+    <div class="totalAmount" id="totalAmount">
     </div>
   </div>
-  <div style='width:100%;height:40px;line-height:40px;background-color:#fff;'>
-    <div class="shiFu" id="shiFu" style='float:right;margin-right:20px;color:#cc0000;'>
+  <div class="shiFu_div">
+    <div class="shiFu" id="shiFu">
     </div>
   </div>
-  <div class='space_div'>
+  <div class="space_div">
   </div>
-  <div class='bottom_div'>
-    <img class='yidian_img' src='<%=path %>/phone/image/019.png'></img>
+  <div class="bottom_div">
+    <img class="yidian_img" src="<%=path %>/phone/image/019.png"></img>
     <div class="foodAmount_div" id="foodAmount_div">
     </div>
     <div class='vs_div'></div>

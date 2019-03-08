@@ -24,11 +24,16 @@ var categoryListLength=0;
 $(function(){
 	getShopShowInfoById();
 	getCategoryList();
-	//setTimeout("getGoodsListByCategoryId('')","3000");
-	setTimeout(function(){
-		//alert(goodsListArr);
-	},"3000");
+	resetTagSize();
 });
+
+function resetTagSize(){
+	var bw=$("body").css("width");
+	bw=bw.substring(0,bw.length-2);
+	var cldw=$("#categoryList_div").css("width");
+	cldw=cldw.substring(0,cldw.length-2);
+	$("#goodsList_div").css("width",(bw-cldw)+"px");
+}
 
 function getShopShowInfoById(){
 	$.post(path+"/phoneAction_getShopShowInfoById.action",
@@ -45,118 +50,28 @@ function getShopShowInfoById(){
 }
 
 function getCategoryList(){
-	/*
-	wx.request({
-	      url: rootIP+"getCategoryList",
-	      method: 'POST',
-	      data: { shopId: shopId},
-	      header: {
-	        'content-type': 'application/x-www-form-urlencoded',
-	      },
-	      success:function(res){
-	        var data = res.data;
-	        if(data.code==100){
-	          let categoryList=data.data;
-	          dcMain.setData({
-	            categoryList: categoryList
-	          });
-	          //console.log(dcMain.data.categoryList[0].id);
-	          //var categoryId = dcMain.data.categoryList[0].id;
-	          let goodsListArr=[];
-	          for (let i = 0; i < categoryList.length;i++){
-	            wx.request({
-	              url: rootIP+"getGoodsListByCategoryId",
-	              method: 'POST',
-	              data: { categoryId: categoryList[i].id, token: token},
-	              header: {
-	                'content-type': 'application/x-www-form-urlencoded',
-	              },
-	              success: function (res) {
-	                var data = res.data;
-	                if (data.code == 100) {
-	                  let goodsList = data.data;
-	                  for (let j = 0; j < goodsList.length; j++) {
-	                    goodsList[j].quantity = 0;
-	                    goodsList[j].display = "none";
-	                  }
-	                  goodsListArr=goodsListArr.concat(goodsList);
-	                  if (i == categoryList.length - 1) {
-	                    dcMain.initFoodQuantity(goodsListArr);
-	                  }
-	                }
-	              }
-	            })
-	          }
-	        }
-	      },
-	      */
-	      $.post(path+"/phoneAction_getCategoryList.action",
-    		  {shopId: shopId},
-    		  function(res){
-    			  var result=res.result;
-   				  if (result.code == 100){
-					var categoryListDiv=$("#categoryList_div");   					  
-   					var categoryList=result.data;
-   					categoryListLength=categoryList.length;
-   					for(var i=0;i<categoryListLength;i++){
-   						categoryListDiv.append("<div class=\"item selected\" id=\"category"+categoryList[i].id+"\" onclick=\"getGoodsListByCategoryId(this.id)\">"
-   							+categoryList[i].categoryName
-   							+"</div>");
-   						getGoodsListByCategoryId("category"+categoryList[i].id);
-   					}
-   					
-   		            for (var i = 0; i < categoryList.length;i++){
-   		        	  /*
-	   		            wx.request({
-	   		              url: rootIP+"getGoodsListByCategoryId",
-	   		              method: 'POST',
-	   		              data: { categoryId: categoryList[i].id, token: token},
-	   		              header: {
-	   		                'content-type': 'application/x-www-form-urlencoded',
-	   		              },
-	   		              success: function (res) {
-	   		                var data = res.data;
-	   		                if (data.code == 100) {
-	   		                  let goodsList = data.data;
-	   		                  for (var j = 0; j < goodsList.length; j++) {
-	   		                    goodsList[j].quantity = 0;
-	   		                    goodsList[j].display = "none";
-	   		                  }
-	   		                  goodsListArr=goodsListArr.concat(goodsList);
-	   		                  if (i == categoryList.length - 1) {
-	   		                    dcMain.initFoodQuantity(goodsListArr);
-	   		                  }
-	   		                }
-	   		              }
-	   		            })
- 	   		            */
-
-   		        	  
-   		            }
-   				  }
-    		  }
-	      );
+   $.post(path+"/phoneAction_getCategoryList.action",
+		  {shopId: shopId},
+		  function(res){
+			  var result=res.result;
+			  if (result.code == 100){
+				var categoryListDiv=$("#categoryList_div");   					  
+				var categoryList=result.data;
+				categoryListLength=categoryList.length;
+				for(var i=0;i<categoryListLength;i++){
+					categoryListDiv.append("<div class=\"item selected\" id=\"category"+categoryList[i].id+"\" onclick=\"getGoodsListByCategoryId(this.id)\">"
+						+categoryList[i].categoryName
+						+"</div>");
+					getGoodsListByCategoryId("category"+categoryList[i].id);
+				}
+			  }
+		  }
+   );
 }
 	
 function initFoodQuantity(foodsList1){
 	var foodsList=convertHtmlToArr(foodsList1);
 	if(strJiaCai=="jiacai"){
-	  /*
-      for (var i = 0; i < foodsList.length;i++){
-        let food=foodsList[i];
-        let iter = getApp().getAllSelectedFood();
-        for (var j = 0; j < iter.length; j++) {
-          if (food.categoryId == iter[j].categoryId & food.id == iter[j].id) {
-            food.quantity = iter[j].quantity;
-            break;
-          }
-        }
-      }
-
-      dcMain.setData({
-        goodsList: foodsList
-      });
-      */
       $.post(path+"/phoneAction_getOrderDetailsByOrderNumberOL.action",
    		  {orderNumber: orderNumber, shopId: shopId, token:token},
    		  function(result){
@@ -211,42 +126,6 @@ function initFoodQuantity(foodsList1){
 	        calulateMoneyAndAmount();
    		  }
 	  );	
-    	
-      /*
-      wx.request({
-        url: rootIP+"getOrderDetailsByOrderNumber",
-        method: 'POST',
-        data: { orderNumber: orderNumber, shopId: shopId, token:token},
-        header: {
-          'content-type': 'application/x-www-form-urlencoded',
-        },
-        success: function (res) {
-          //console.log(res);
-          var data = res.data;
-          if (data.code == 100) {
-            var productList = data.data.productList;
-            for (var i = 0; i < foodsList.length; i++){
-              var food = foodsList[i];
-              for (var j = 0; j < productList.length; j++) {
-                let product = productList[j];
-                if ((food.categoryId == product.categoryId) & (food.id == product.id)) {
-                  food.quantity = product.quantity;
-                  break;
-                }
-              }
-            }
-
-          }
-
-          dcMain.setData({
-            goodsList: foodsList
-          });
-
-          dcMain.getGoodsListByCategoryId();
-          dcMain.calulateMoneyAndAmount();
-        }
-      })
-      */
     }
 }
 
@@ -270,66 +149,54 @@ function convertHtmlToArr(foodsList1){
 }
 	
 function getGoodsListByCategoryId(categoryId){
+	$(".categoryList_div div[id^='category']").each(function(){
+		if($(this).attr("id")==categoryId){
+			//$(this).css("color","#639DCB");
+			$(this).css("background-color","#fff");
+		}
+		else{
+			//$(this).css("color","#505050");
+			$(this).css("background-color","#f0f4f3");
+		}
+	});
 	if(categoryId==""){
+		$(".categoryList_div div[id^='category']").eq(0).css("background-color","#fff");
 		categoryId = $("#categoryList_div .item").eq(0).attr("id").substring(8);
 	}
 	else
     	categoryId = categoryId.substring(8);
 	var goodsListDiv=$("#goodsList_div");
 	goodsListDiv.empty();
-    /*
-    for (var i = 0; i < goodsListArr.length;i++){
-      if (goodsListArr[i].categoryId == categoryId){
-    		alert($("#goodsList_div .item[categoryid='"+categoryId+"']").eq(0).css("display"));
-    	$("#goodsList_div .item[categoryid='"+categoryId+"']").css("display","block");
-        //goodsList[i].display="block";
-      }
-      else{
-      	$("#goodsList_div .item[categoryid='"+categoryId+"']").css("display","none");
-        //goodsList[i].display = "none";
-      }
-    }
-    dcMain.setData({
-      goodsList: goodsList
-    });
-    */
     if(goodsListArr[categoryId]==undefined){
        $.ajaxSetup({async:false});
        $.post(path+"/phoneAction_getGoodsListByCategoryId.action",
    		{categoryId: categoryId, token: token},
    		function(res){
-			  	  var result=res.result;
-				  if (result.code == 100){
-					  var goodsList = result.data;
-					  var goodsDiv=$("<div></div>");
-	                  for (var i = 0; i < goodsList.length; i++) {
-	                    //goodsList[j].quantity = 0;
-	                    //goodsList[j].display = "none";
-	                    
-	                	goodsDiv.append("<div class=\"item\" id=\"item"+goodsList[i].id+"\" categoryId=\""+goodsList[i].categoryId+"\" categoryName=\""+goodsList[i].categoryName+"\">"
-	                	+"<img class=\"goods_img\" src=\""+goodsList[i].imgUrl+"\" onclick=\"goGoodsdetail('"+goodsList[i].id+"','"+goodsList[i].productName+"','"+goodsList[i].imgUrl+"','"+goodsList[i].monthlySalesVolume+"','"+goodsList[i].price+"','"+goodsList[i].collectState+"','"+goodsList[i].grade+"','"+goodsList[i].categoryId+"','"+goodsList[i].categoryName+"')\"></img>"
-	                	+"<div class=\"productName_div\">"+goodsList[i].productName+"</div>"
-		                +"<div class=\"price_div\">￥"+goodsList[i].price+"</div>"
-		   		        +"<div class=\"option_div\">"
-		   		        +"<img class=\"remove_img\" src=\""+path+"/phone/image/002.png\" ontouchstart=\"removeGood('"+goodsList[i].id+"')\"></img>"
-		   		        +"<input class=\"count_input\" id=\"count_input"+goodsList[i].id+"\" value=\"0\"></input>"
-		   		        +"<img class=\"add_img\" src=\""+path+"/phone/image/003.png\" ontouchstart=\"addGood('"+goodsList[i].id+"')\"></img>"
-		   		        +"</div>"
-		   		        +"</div>");
-	                	//alert(goodsListDiv.html());
-	                  }
-	                  
-	                  goodsListArr[categoryId]=goodsDiv.html();
-	                  /*
-	                  goodsListArr=goodsListArr.concat(goodsList);
-	                  if (i == categoryList.length - 1) {
-	                    initFoodQuantity(goodsListArr);
-	                  }
-		              */
-				  }
-				  if($("#categoryList_div .item").length==categoryListLength){
-					  initFoodQuantity(goodsListArr);			  
-				  }
+		  	  var result=res.result;
+			  if (result.code == 100){
+				  var goodsList = result.data;
+				  var goodsDiv=$("<div></div>");
+	                 for (var i = 0; i < goodsList.length; i++) {
+	                   //goodsList[j].quantity = 0;
+	                   //goodsList[j].display = "none";
+	                   
+		               	goodsDiv.append("<div class=\"item\" id=\"item"+goodsList[i].id+"\" categoryId=\""+goodsList[i].categoryId+"\" categoryName=\""+goodsList[i].categoryName+"\">"
+			               	+"<img class=\"goods_img\" src=\""+goodsList[i].imgUrl+"\" onclick=\"goGoodsdetail('"+goodsList[i].id+"','"+goodsList[i].productName+"','"+goodsList[i].imgUrl+"','"+goodsList[i].monthlySalesVolume+"','"+goodsList[i].price+"','"+goodsList[i].collectState+"','"+goodsList[i].grade+"','"+goodsList[i].categoryId+"','"+goodsList[i].categoryName+"')\"></img>"
+			               	+"<div class=\"productName_div\">"+goodsList[i].productName+"</div>"
+			                +"<div class=\"price_div\">￥"+goodsList[i].price+"</div>"
+			   		        +"<div class=\"option_div\">"
+			   		        +"<img class=\"remove_img\" src=\""+path+"/phone/image/002.png\" ontouchstart=\"removeGood('"+goodsList[i].id+"')\"></img>"
+			   		        +"<input class=\"count_input\" id=\"count_input"+goodsList[i].id+"\" value=\"0\"></input>"
+			   		        +"<img class=\"add_img\" src=\""+path+"/phone/image/003.png\" ontouchstart=\"addGood('"+goodsList[i].id+"')\"></img>"
+			   		        +"</div>"
+			   		        +"</div>");
+	                 }
+	                 
+	                 goodsListArr[categoryId]=goodsDiv.html();
+			  }
+			  if($("#categoryList_div .item").length==categoryListLength){
+				  initFoodQuantity(goodsListArr);			  
+			  }
        	}
        );
     }
@@ -459,7 +326,7 @@ function goOrder(){
 	location.href=path+"/phone/orderDetail/orderDetail.jsp";
 }
 </script>
-<title>Insert title here</title>
+<title>点餐</title>
 </head>
 <body style="margin: 0px;">
 <div class="main_div">

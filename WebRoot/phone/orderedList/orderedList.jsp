@@ -152,43 +152,14 @@ function confirm(){
     }
 }
 </script>
-<title>Insert title here</title>
+<title>已点列表</title>
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px;background-color: #f0f0f2;">
 <div class='main_div'>
   <div class='ydlb_div'>
     已点列表
   </div>
-  <div class="productList_div" id="productList_div" wx:for-items="{{productList}}">
-  	<!-- 
-    <div wx:if="{{index==0}}">
-      <div class='categoryName_div'>
-        {{item.categoryName}}
-      </div>
-    </div>
-    <div wx:else>
-      <div wx:if="{{productList[index].categoryId!=productList[index-1].categoryId}}">
-        <div class='categoryName_div'>
-          {{item.categoryName}}
-        </div>
-      </div>
-    </div>
-     -->
-     <!-- 
-    <div class='item_div'>
-      <img class='imgUrl_img' src='{{item.imgUrl}}'></img>
-      <div class='productName_div'>{{item.productName}}</div>
-      <div class='price_div'>{{item.price}}元</div>
-      <div class='option_div'>
-        <img class='reduce_img' src='<%=path %>/phone/image/012.png' data-index='{{index}}' catchtap='reduceProduct'></img>
-        <input class="quantity_input" value='{{item.quantity}}'></input>
-        <img class='plus_img' src='<%=path %>/phone/image/013.png' data-index='{{index}}' catchtap='plusProduct'></img>
-        <div class='delete_div' data-index='{{index}}' catchtap='deleteProduct'>
-          移除
-        </div>
-      </div>
-    </div>
-     -->
+  <div class="productList_div" id="productList_div">
   </div>
   <div class="space_div"></div>
   <div class="bottom_div">

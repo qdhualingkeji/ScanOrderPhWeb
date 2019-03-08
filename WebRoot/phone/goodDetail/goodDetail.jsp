@@ -229,7 +229,7 @@ function nextAction(gsList, type){
 	);
 }
 </script>
-<title>Insert title here</title>
+<title>菜品详情</title>
 </head>
 <body style="margin: 0px;">
 <div class='main_div'>
@@ -258,9 +258,9 @@ function nextAction(gsList, type){
       ${param.price}元
     </div>
     <div class='option_div'>
-      <img class='jian_img' src='<%=path %>/phone/image/017.png' data-index='{{index}}' onclick="jianGood()"></img>
+      <img class='jian_img' src='<%=path %>/phone/image/017.png' onclick="jianGood()"></img>
       <input class="sum_input" id="sum_input" value='{{sum}}'></input>
-      <img class='add_img' src='<%=path %>/phone/image/018.png' data-index='{{index}}' onclick="addGood()"></img>
+      <img class='add_img' src='<%=path %>/phone/image/018.png' onclick="addGood()"></img>
     </div>
   </div>
   <div class='tclb_div'>
