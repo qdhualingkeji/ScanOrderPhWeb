@@ -232,68 +232,69 @@ function nextAction(gsList, type){
 <title>菜品详情</title>
 </head>
 <body style="margin: 0px;">
-<div class='main_div'>
-  <div class='title_div'>
+<div class="main_div">
+  <div class="title_div">
     ${param.productName}
   </div>
-  <img class='imgUrl_img' src='${param.imgUrl}' style='width:100%;height:200px;'/>
-  <div class='name_sc_div' style='width:100%;height:50px;line-height:50px;'>
-    <div class='productName_div' style='margin-left:20px;color:#333;'>${param.productName}</div>
-    <div class='shoucang_div' style='float:right;margin-top:-50px;margin-right:20px;color:#747474;'>收藏</div>
-    <img class="sciu_div" id="sciu_div" src="" onclick="shouCang()" style='width:20px;height:20px;float:right;margin-top:-35px;margin-right:65px;'/>
+  <div class="back_div" onclick="history.go(-1);">返回</div>
+  <img class="imgUrl_img" src="${param.imgUrl}"/>
+  <div class="name_sc_div">
+    <div class="productName_div">${param.productName}</div>
+    <div class="shoucang_div">收藏</div>
+    <img class="sciu_div" id="sciu_div" src="" onclick="shouCang()"/>
   </div>
-  <div class='zhpf_msv_div' style='width:100%;height:50px;line-height:50px;'>
-    <div class='zhpf_div' style='width:85px;margin-left:20px;color:#777;'>综合评分:</div>
-    <img class="xx_img" id="xxa_img" src="" style='width:20px;height:20px;margin-top:-35px;margin-left:110px;position:absolute;'/>
-    <img class="xx_img" id="xxb_img" src="" style='width:20px;height:20px;margin-top:-35px;margin-left:135px;position:absolute;'/>
-    <img class="xx_img" id="xxc_img" src="" style='width:20px;height:20px;margin-top:-35px;margin-left:160px;position:absolute;'/>
-    <img class="xx_img" id="xxd_img" src="" style='width:20px;height:20px;margin-top:-35px;margin-left:185px;position:absolute;'/>
-    <img class="xx_img" id="xxe_img" src="" style='width:20px;height:20px;margin-top:-35px;margin-left:210px;position:absolute;'/>
-    <div class="msv_div" style='width:120px;height:50px;line-height:50px;margin-top:-50px;margin-left:250px;color:#818181;position:absolute;'>
+  <div class="zhpf_msv_div">
+    <div class="zhpf_div">综合评分:</div>
+    <img class="xx_img xxa" id="xxa_img" src="" />
+    <img class="xx_img xxb" id="xxb_img" src="" />
+    <img class="xx_img xxc" id="xxc_img" src="" />
+    <img class="xx_img xxd" id="xxd_img" src="" />
+    <img class="xx_img xxe" id="xxe_img" src="" />
+    <div class="msv_div">
       月销量${param.monthlySalesVolume}份
     </div>
   </div>
-  <div class='price_opt_div' style='width:100%;height:50px;line-height:50px;'>
-    <div class='price_div' style='width:85px;margin-left:20px;color:#d75571;'>
+  <div class="price_opt_div">
+    <div class="price_div">
       ${param.price}元
     </div>
-    <div class='option_div'>
-      <img class='jian_img' src='<%=path %>/phone/image/017.png' onclick="jianGood()"></img>
+    <div class="option_div">
+      <img class="jian_img" src="<%=path %>/phone/image/017.png" onclick="jianGood()"></img>
       <input class="sum_input" id="sum_input" value='{{sum}}'></input>
-      <img class='add_img' src='<%=path %>/phone/image/018.png' onclick="addGood()"></img>
+      <img class="add_img" src="<%=path %>/phone/image/018.png" onclick="addGood()"></img>
     </div>
   </div>
-  <div class='tclb_div'>
-    <div class='tclb_text_div'>套餐列表</div>
+  <div class="tclb_div">
+    <div class="tclb_text_div">套餐列表</div>
   </div>
-  <div class='price_zj_div'>
-    <div class='price_div'>套餐价:${param.price}</div>
+  <div class="price_zj_div">
+    <div class="price_div">套餐价:${param.price}</div>
     <div class="zongjia_div" id="zongjia_div">总价:{{zongjia}}</div>
   </div>
-  <div class='spjj_div'>
-    <div class='spjj_text_div'>商品简介</div>
+  <div class="spjj_div">
+    <div class="spjj_text_div">商品简介</div>
   </div>
-  <div style='width:100%;'>
+  <div style="width:100%;">
   </div>
-  <div style='width:100%;height:40px;'>
+  <div style="width:100%;height:40px;">
   </div>
-  <div class='space_div'>
+  <div class="space_div">
   </div>
-  <div class='bottom_div'>
-    <img class='yidian_img' src='<%=path %>/phone/image/019.png'></img>
+  <div class="bottom_div">
+    <img class="yidian_img" src="<%=path %>/phone/image/019.png"></img>
     <div class="foodAmount_div" id="foodAmount_div">
       {{foodAmount}}
     </div>
-    <div class='vs_div'></div>
-    <div class='yd_tp_div'>
-      <div class='yidian_div'>
+    <div class="vs_div"></div>
+    <div class="yd_tp_div">
+      <div class="yidian_div">
         已点
       </div>
       <div class="totalPrice_div" id="totalPrice_div">
         {{totalPrice}}
       </div>
     </div>
-    <div class='jrddlb_div' onclick="addFoodToList()">
+    <div class="jrddlb_div" onclick="addFoodToList()">
       加入订单列表
     </div>
   </div>
